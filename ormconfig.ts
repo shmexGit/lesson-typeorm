@@ -1,9 +1,10 @@
 import { DataSource } from 'typeorm';
+import * as path  from 'path';
+import { getTypeormConfig } from '@lesson-typeorm/configs/typeorm.config';
+import { getConfig } from '@lesson-typeorm/configs/config.validator';
 
-export const connextionSource = new DataSource({
-  type: 'sqlite',
-  database: './db.sql',
-  entities: ['src/**/*.entity.ts'],
-  migrationsTableName: 'typeorm_migrations',
-  migrations: ['src/migrations/*.{ts,js}'],
-})
+export const connectionSource = new DataSource(
+  getTypeormConfig(
+    getConfig(path.resolve(__dirname, '.env'))
+  )
+);

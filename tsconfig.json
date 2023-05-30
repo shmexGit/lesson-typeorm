@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "jsx": "react",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "declaration": true,
@@ -22,7 +21,10 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@lesson-typeorm/*": ["src/*"]
+    }
   },
   "exclude": ["node_modules", "dist"]
 }

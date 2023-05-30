@@ -1,9 +1,11 @@
 import { DataSource } from 'typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import * as path from 'path';
+import { getTypeormConfig } from '@lesson-typeorm/configs/typeorm.config';
+import { getConfig } from '@lesson-typeorm/configs/config.validator';
 
-import { getTypeormConfig } from '../configs/typeorm.config';
+const options = getTypeormConfig(getConfig(path.resolve(__dirname, '..', '..', '.env')));
 
-const options = getTypeormConfig();
 const dataSource = new DataSource(options as PostgresConnectionOptions);
 
 export const connection = () => {
