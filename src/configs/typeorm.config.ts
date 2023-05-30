@@ -3,7 +3,7 @@ import { SeederOptions } from 'typeorm-extension';
 import { TypeormNamingStrategy } from '@lesson-typeorm/utils/typeorm-naming.strategy'
 import { IConfig } from '@lesson-typeorm/types';
 
-export const getTypeormConfig = (config: IConfig): DataSourceOptions & SeederOptions => {
+export const getTypeORMConfig = (config: IConfig): DataSourceOptions & SeederOptions => {
   return {
     type: 'postgres',
     host: config.DB_HOST,

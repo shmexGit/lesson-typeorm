@@ -9,6 +9,7 @@ import { CreateTransactionDto, UpdateTransactionDto } from './dto/transaction.dt
 import { TransactionStatisticView } from './transaction-statistic.view.entity';
 import { DateRangeDto } from './dto/date-range.dto';
 import { TransactionUpdate } from './entities/transaction-update.entity';
+import { OrderDirection } from '@lesson-typeorm/types';
 
 export class TransactionService {
   private customRepository: TransactionRepository;
@@ -33,12 +34,16 @@ export class TransactionService {
   findByPagination(paginationDto: PaginationDto) {
     return this.transactionRepository.find({
       relations: { resource: true },
+      order: { id: OrderDirection.ASC },
       ...paginationDto
     });
   }
 
   find() {
-    return this.transactionRepository.find({ relations: { resource: true } });
+    return this.transactionRepository.find({
+      relations: { resource: true },
+      order: { id: OrderDirection.ASC },
+    });
   }
 
   async create(createTransactionDto: CreateTransactionDto) {

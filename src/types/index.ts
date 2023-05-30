@@ -1,3 +1,7 @@
+import * as repl from 'node:repl';
+import { ResourceService } from "@lesson-typeorm/modules/resource/resource.service";
+import { TransactionService } from "@lesson-typeorm/modules/transaction/transaction.service";
+
 export interface IConfig {
   DB_HOST: string,
   DB_PORT: number,
@@ -33,3 +37,12 @@ export type AnyObject = Record<any, any>;
 export type AnyClass<T = unknown, U = AnyObject> = {
   new (...arguments_: unknown[]): T;
 } & U;
+
+export interface IReplCommand {
+  help: string;
+  action: (
+    services: { transaction: TransactionService, resource: ResourceService },
+    callback: (err: Error, result: any) => void,
+    dto?: string
+  ) => Promise<void> | void | never;
+}
